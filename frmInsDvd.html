@@ -1,0 +1,27 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Inserção de DVD's</title>
+<body>
+<div class="container col-md-8">
+    <h1>Cadastrar Novo DVD</h1>
+    <form id="frmNovoDvd" name="frmNovoDvd" method="POST" action="insDvd.php">
+        <div class="form-group">
+            <label for="lblFil">Filme: </label>
+            <input class="form-control col-md-6" type="text" id="txtFil"
+                   name="txtFil" placeholder="Informe o Filme contido neste DVD">
+        </div>
+        <input type="submit" id="btEnviar" name="btEnviar"
+               class="btn btn-success btn-lg" value="Gravar">
+        <input type="reset" id="btLimpar" name="btLimpar"
+               class="btn btn-warning btn-lg" value="Limpar">
+        <input type="button" id="bt_Cancel" name="bt_Cancel"
+               class="btn btn-danger btn-lg" value="Cancelar"
+               onclick="javascript:location.href='lstDvd.php'">
+    </form>
+</div>
+</body>
+</head>
+</html>
