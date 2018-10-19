@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo de Validação</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/validator.min.js"></script>
+</head>
+<body>
+<div class="container col-md-8">
+    <h1>Exemplo Validação de Campos</h1>
+    <form id="frmValida" role="form" data-toggle="validator" method="POST" action="validacao.php">
+        <div class="form-group">
+            <label for="inputName" class="control-label">Name: </label>
+            <input type="text" class="form-control" id="inputName" name="nome" placeholder="Informe o nome" required>
+            <div class="help-block with-errors">Campo nome obrigatório!</div>
+        </div>
+        <div class="form-group has-feedback">
+            <label for="inputTwitter" class="control-label">Twitter: </label>
+            <div class="input-group">
+                <span class="input-group-addon">@</span>
+                <input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control" id="inputTwitter" name="twitter" placeholder="" required>
+            </div>
+            <span class="glyphicon form-control-feedbback" aria-hidden="true"></span>
+                <div class="help-block with-errors">Veja a resposta no icone!</div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail" class="control-label">Email: </label>
+            <input type="email" class="form=control" id="inputEmail" name="email" placeholder="Informe o Email" data-error="Email inválido" required>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+            <label for="inputNumber" class="control-label">Número: </label>
+            <input type="number" class="form-control" id="inputNumber" name="numero" placeholder="Informe Número" data-error="Informe numero entre 10 a 100" max="100" min="10" required>
+            <div class="help-block with-errors"></div>
+        </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        <div class="form-group">
+            <label for="inputPassword" class="control-label">Password</label>
+            <div class="form-inline row">
+                <div class="form-group col-sm-6">
+                    <input type="password" data-minlength="6" class="form-control"
+                           id="inputPassword" name="password" placeholder="Password" required>
+                    <div class="help-block">Tamanho mínimo: 6 caracteres</div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <input type="password" class="form-control"
+                           id="inputPasswordConfirm" data-match="#inputPassword"
+                           data-match-error="Campo senha e confirma diferentes!!!"
+                           placeholder="Confirma" required>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputNumber" class="control-label">Escolha a fruta: </label>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="fruta" required>
+                    Laranjas
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="fruta" required>
+                    Abacaxis
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="terms" name="checkbox"
+                           data-error="Confirme o seu chekbox" required>
+                    Confirme a remoção de dados
+                </label>
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+        <br></form>
+    </form>
+</div>
+</body>
+</html>
