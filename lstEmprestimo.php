@@ -83,7 +83,6 @@ $rs = mysql_query("SELECT * FROM emprestimo;");
                 <th>Prazo Devolução</th>
                 <th>Data Devolução</th>
                 <th>Situação</th>
-                <th colspan="2" class="text-center">OPERAÇÕES</th>
             </tr>
             <?php while ($linha = mysql_fetch_array($rs)) { ?>
                 <tr>
@@ -92,7 +91,7 @@ $rs = mysql_query("SELECT * FROM emprestimo;");
                     <td><?php echo $linha['cliente'] ?></td>
                     <td><?php echo $linha['valor_emprestimo'] ?></td>
                     <td><?php echo $linha['valor_pago'] ?></td>
-                    <td><?php echo $linha['data'] ?></td>
+                    <td><?php echo $linha['dataa'] ?></td>
                     <td><?php echo $linha['prazo_devolucao'] ?></td>
                     <td><?php echo $linha['data_devolucao'] ?></td>
                     <td><?php echo $linha['situacao'] ?></td>

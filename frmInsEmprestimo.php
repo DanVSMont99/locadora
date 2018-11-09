@@ -86,7 +86,7 @@ if (!isset($_SESSION['user']))
             <div class="form-group">
                 <label for="lblDataDevolucao">Data de Devolução: </label>
                 <input class="form-control col-md-6" type="text" id="txtDataDevolucao"
-                       name="txtDataDevoluca" placeholder="Informe a Data de Devolução">
+                       name="txtDataDevolucao" placeholder="Informe a Data de Devolução">
             </div>
             <div class="form-group">
                 <label for="lblSit">Situação: </label>
