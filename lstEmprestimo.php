@@ -4,19 +4,33 @@ session_start();
 if (!isset($_SESSION['user']))
     Header("Location: ./loginPage.html");
 
+$conexao = mysql_connect("localhost", "root", "");
+if (!$conexao) {
+    echo "Erro ao se conectar MySQL <br/>";
+    exit;
+}
+
+$banco = mysql_select_db("locadora");
+if (!$banco) {
+    echo "Erro ao se conectar ao banco de dados locadora!";
+    exit;
+}
+
+$rs = mysql_query("SELECT * FROM emprestimo;");
 ?>
+
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Inserção de Filmes</title>
+    <title>Listagem de Empréstimo</title>
+</head>
 <body>
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
@@ -46,41 +60,54 @@ if (!isset($_SESSION['user']))
 </div>
 
 
+<div class="w3-content" style="max-width:2000px;margin-top:70px;margin-right: 50%">
 
-<div class="w3-content" style="max-width:2000px;margin-top:60px;margin-left:-100px">
 
-    <div class="container col-md-8">
-        <h1>Cadastrar Novo Filme</h1>
-        <form id="frmNovoFilme" name="frmNovoFilme" method="POST" action="insFilme.php">
-            <div class="form-group">
-                <label for="lblGen">Gênero: </label>
-                <input class="form-control col-md-6" type="text" id="txtGen"
-                       name="txtGen" placeholder="Informe a Categoria do Filme">
-            </div>
-            <div class="form-group">
-                <label for="lblTit">Título: </label>
-                <input class="form-control col-md-6" type="text" id="txtTit"
-                       name="txtTit" placeholder="Informe o Título do Filme">
-            </div>
-            <div class="form-group">
-                <label for="lblAno">Ano: </label>
-                <input class="form-control col-md-6" type="text" id="txtAno"
-                       name="txtAno" placeholder="Informe o Ano do Filme">
-            </div>
-            <div class="form-group">
-                <label for="lblValor">Valor: </label>
-                <input class="form-control col-md-6" type="text" id="txtValor"
-                       name="txtValor" placeholder="Informe o Valor do Filme">
-            </div>
-            <input type="submit" id="btEnviar" name="btEnviar"
-                                        class="btn btn-success btn-lg" value="Salvar">
-            <input type="reset" id="btLimpar" name="btLimpar"
-                                        class="btn btn-warning btn-lg" value="Limpar">
-            <input type="button" id="bt_Cancel" name="bt_Cancel"
-                                        class="btn btn-danger btn-lg" value="Cancelar"
-                                            onclick="javascript:location.href='lstFilme.php'">
-        </form>
+    <div class="container col-md-9">
+        <h1 class="display-1">Empréstimos</h1>
+
+        <input type="button" id="bt_Adicionar" name="bt_Adicionar"
+               class="btn btn-primary btn-lg" value="Adicionar"
+               onclick="javascript:location.href='frmInsEmprestimo.php'">
+
+        <br><br>
+        <table class="table col-md-12 table-dark table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>DVD</th>
+                <th>Cliente</th>
+                <th>Valor</th>
+                <th>Valor Pago</th>
+                <th>Data</th>
+                <th>Prazo Devolução</th>
+                <th>Data Devolução</th>
+                <th>Situação</th>
+                <th colspan="2" class="text-center">OPERAÇÕES</th>
+            </tr>
+            <?php while ($linha = mysql_fetch_array($rs)) { ?>
+                <tr>
+                    <td><?php echo $linha['id'] ?></td>
+                    <td><?php echo $linha['dvd'] ?></td>
+                    <td><?php echo $linha['cliente'] ?></td>
+                    <td><?php echo $linha['valor_emprestimo'] ?></td>
+                    <td><?php echo $linha['valor_pago'] ?></td>
+                    <td><?php echo $linha['data'] ?></td>
+                    <td><?php echo $linha['prazo_devolucao'] ?></td>
+                    <td><?php echo $linha['data_devolucao'] ?></td>
+                    <td><?php echo $linha['situacao'] ?></td>
+                    <td><button id="btEdt" class="btn btn-outline-warning btn-lg"  data-toggle="tooltip" data-placement="top" title="Editar"
+                                onclick="javascript:location.href='frmEdtCliente.php?id=' + <?php echo $linha ['id'] ?>">
+                            <i class="fas fa-edit"></i></button>
+                    </td>
+                    <td><button id="btRem" class="btn btn-outline-danger btn-lg"
+                                onclick="javascript:location.href='frmRemCliente.php?id=' + <?php echo $linha ['id'] ?>">
+                            <i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            <?php } ?>
+            </thead>
+        </table>
     </div>
 </body>
-</head>
 </html>

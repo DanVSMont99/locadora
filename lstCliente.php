@@ -54,16 +54,9 @@ $rs = mysql_query("SELECT * FROM cliente;");
                 <a href="frmInsDvd.php" class="w3-bar-item w3-button">DVD's</a>
             </div>
         </div>
-        <a href="#alocacao" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ALOCAÇÃO</a>
+        <a href="lstEmprestimo.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ALOCAÇÃO</a>
         <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">LogOut</a>
     </div>
-</div>
-
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-    <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BAND</a>
-    <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
 </div>
 
 
@@ -71,10 +64,10 @@ $rs = mysql_query("SELECT * FROM cliente;");
 
 
 <div class="container col-md-9">
-    <h1><center>Clientes</center></h1>
+    <h1 class="display-1">Clientes</h1>
 
-    <br>
-    <table class="table col-md-12">
+    <br><br>
+    <table class="table col-md-12 table-dark table-bordered">
         <thead class="thead-dark">
         <tr>
             <th>ID</th>
@@ -99,11 +92,11 @@ $rs = mysql_query("SELECT * FROM cliente;");
                 <td><?php echo $linha['telefone'] ?></td>
                 <td><button id="btEdt" class="btn btn-outline-warning btn-lg"  data-toggle="tooltip" data-placement="top" title="Editar"
                             onclick="javascript:location.href='frmEdtCliente.php?id=' + <?php echo $linha ['id'] ?>">
-                        <i class="far fa-edit"></i></button>
+                        <i class="fas fa-edit"></i></button>
                 </td>
                 <td><button id="btRem" class="btn btn-outline-danger btn-lg"
                             onclick="javascript:location.href='frmRemCliente.php?id=' + <?php echo $linha ['id'] ?>">
-                        <i class="far fa-trash-alt"></i></button>
+                        <i class="fas fa-trash-alt"></i></button>
                 </td>
             </tr>
         <?php } ?>

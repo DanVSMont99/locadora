@@ -40,16 +40,9 @@ if (!isset($_SESSION['user']))
                 <a href="frmInsDvd.php" class="w3-bar-item w3-button">DVD's</a>
             </div>
         </div>
-        <a href="#alocacao" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ALOCAÇÃO</a>
+        <a href="lstEmprestimo.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ALOCAÇÃO</a>
         <a href="logout.php" class="w3-bar-item w3-button w3-padding-large">LogOut</a>
     </div>
-</div>
-
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-    <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BAND</a>
-    <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
 </div>
 
 
